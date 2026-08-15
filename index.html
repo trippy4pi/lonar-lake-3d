@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4" />
+    <link rel="apple-touch-icon" href="/app-icon.svg?v=4" />
+    <link rel="manifest" href="/manifest.json?v=4" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="theme-color" content="#07090e" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Lonar 3D" />
+    <title>Lonar Lake 3D</title>
+    <meta name="description" content="Interactive 3D web application of Lonar Crater in Deccan Traps flood basalt. Explore impact shock physics, sub-surface 3D cross-sections, basalt minerals, and soda lake ecology." />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(err => {
+            console.log('SW registration error: ', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

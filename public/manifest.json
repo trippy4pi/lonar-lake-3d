@@ -1,0 +1,19 @@
+{
+  "name": "Lonar Crater 3D Geomorphology",
+  "short_name": "Lonar 3D",
+  "description": "Interactive 3D Web Application of Lonar Crater in Deccan Traps flood basalt.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07090e",
+  "theme_color": "#07090e",
+  "orientation": "any",
+  "categories": ["education", "geology", "science"],
+  "icons": [
+    {
+      "src": "/app-icon.svg?v=4",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
