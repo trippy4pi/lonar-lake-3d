@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import LonarCanvas from './components/LonarCanvas';
 import Navbar from './components/Navbar';
 import HUDOverlay from './components/HUDOverlay';
@@ -319,6 +320,9 @@ export default function App() {
           </div>
         )}
       </div>
+
+      {/* Vercel Web Analytics Tracker */}
+      <Analytics />
     </div>
   );
 }
