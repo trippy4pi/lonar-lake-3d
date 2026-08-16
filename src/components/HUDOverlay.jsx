@@ -166,7 +166,7 @@ export default function HUDOverlay({
           gap: '18px',
           alignItems: 'center'
         }}>
-          {/* Drain Water / Lake Toggle Button */}
+          {/* Drain Water / Lake Toggle Button (Icon Removed) */}
           <button
             className={`hud-btn ${!showWater ? 'active' : ''}`}
             onClick={() => {
@@ -177,12 +177,11 @@ export default function HUDOverlay({
             style={{
               borderColor: showWater ? 'var(--accent-cyan)' : 'var(--accent-amber)',
               color: showWater ? 'var(--accent-cyan)' : 'var(--accent-amber)',
-              padding: '8px 12px',
+              padding: '8px 14px',
               whiteSpace: 'nowrap'
             }}
             title="Toggle Lake Water ON / OFF"
           >
-            {showWater ? <Droplets size={16} color="var(--accent-cyan)" /> : <EyeOff size={16} color="var(--accent-amber)" />}
             <span>{showWater ? 'Lake Water ON' : 'Lake Water OFF'}</span>
           </button>
 
@@ -587,7 +586,7 @@ export default function HUDOverlay({
               <Video size={16} /> Camera Navigation Controls
             </span>
             <span style={{ fontSize: '0.64rem', color: 'var(--accent-cyan)', fontFamily: 'var(--font-mono)', fontWeight: '500', marginLeft: '10px' }}>
-              Move: WASD Keys • Rotate: Arrow Keys • Zoom: +/-
+              Move: WASD Keys • Rotate: Arrow Keys • Zoom: +/- Keys
             </span>
           </div>
           <div style={{ display: 'flex', gap: '5px' }}>

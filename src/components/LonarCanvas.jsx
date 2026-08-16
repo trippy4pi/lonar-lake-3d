@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useMemo } from 'react';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -19,6 +19,38 @@ const BOUNDS = {
   minDistance: 0.5,
   maxDistance: 55.0
 };
+
+// Hidden Easter Egg Plane rendered under the lake basin (Invisible from above, visible ONLY from below)
+function UpsideDownEasterEgg() {
+  const texture = useMemo(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 128;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, 512, 128);
+    ctx.font = 'bold 34px "Space Grotesk", sans-serif';
+    ctx.fillStyle = '#ef4444'; // Glowing Stranger-Things Red
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = '#ef4444';
+    ctx.shadowBlur = 18;
+    ctx.fillText('You are in Upside Down', 256, 64);
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.needsUpdate = true;
+    return tex;
+  }, []);
+
+  return (
+    <mesh position={[0.45, -3.25, -0.85]} rotation={[Math.PI / 2, 0, 0]}>
+      <planeGeometry args={[8, 2]} />
+      <meshBasicMaterial
+        map={texture}
+        transparent={true}
+        side={THREE.FrontSide} // Backface culling hides it from above; visible strictly when looking up from underneath!
+      />
+    </mesh>
+  );
+}
 
 function CameraController({ cameraPreset, autoRotate, setAutoRotate, epochIndex }) {
   const { camera, gl } = useThree();
@@ -288,6 +320,9 @@ export default function LonarCanvas({
 
         <WaterBody phLevel={phLevel} waterLevel={waterLevel} visible={isWaterVisible} />
         {epochIndex !== 0 && <Hotspots onSelectHotspot={onSelectHotspot} activeHotspotId={activeHotspotId} />}
+
+        {/* Hidden Easter Egg: "You are in Upside Down" under the lake basin */}
+        <UpsideDownEasterEgg />
 
         <CameraController 
           cameraPreset={cameraPreset} 
