@@ -92,7 +92,8 @@ export default function HUDOverlay({
   showGrid,
   setShowGrid,
   epochIndex,
-  setEpochIndex
+  setEpochIndex,
+  darkMode = true
 }) {
   const [showSources, setShowSources] = useState(false);
   const [showDisclaimerTooltip, setShowDisclaimerTooltip] = useState(false);
@@ -431,7 +432,7 @@ export default function HUDOverlay({
           flexShrink: 0,
           position: 'relative'
         }}>
-          {/* Friendly, Understandable Extended Tooltip Component with Author Credit */}
+          {/* Projection Offset Disclaimer Tooltip Component with Dark & Light Mode Theme Support */}
           {showDisclaimerTooltip && (
             <div 
               onMouseEnter={handleMouseEnterDisclaimer}
@@ -443,30 +444,42 @@ export default function HUDOverlay({
                 marginBottom: '14px',
                 width: '360px',
                 padding: '16px 20px',
-                background: 'rgba(15, 23, 42, 0.94)',
-                backdropFilter: 'blur(16px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+                background: 'var(--bg-card)',
+                backdropFilter: 'var(--glass-blur)',
+                WebkitBackdropFilter: 'var(--glass-blur)',
                 border: '1px solid rgba(245, 158, 11, 0.4)',
                 borderRadius: '14px',
-                boxShadow: '0 15px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(245, 158, 11, 0.2)',
+                boxShadow: darkMode 
+                  ? '0 15px 35px rgba(0, 0, 0, 0.7), 0 0 20px rgba(245, 158, 11, 0.2)' 
+                  : '0 15px 35px rgba(0, 0, 0, 0.15), 0 0 15px rgba(245, 158, 11, 0.25)',
                 zIndex: 35,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '10px',
-                pointerEvents: 'auto'
+                pointerEvents: 'auto',
+                transition: 'all 0.3s ease'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--accent-amber)', fontWeight: '700', fontSize: '0.8rem', borderBottom: '1px solid rgba(245, 158, 11, 0.25)', paddingBottom: '8px' }}>
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '8px', 
+                color: darkMode ? 'var(--accent-amber)' : '#d97706', 
+                fontWeight: '700', 
+                fontSize: '0.8rem', 
+                borderBottom: darkMode ? '1px solid rgba(245, 158, 11, 0.25)' : '1px solid rgba(217, 119, 6, 0.25)', 
+                paddingBottom: '8px' 
+              }}>
                 <AlertTriangle size={16} />
                 <span>Note on 3D Terrain Alignment</span>
               </div>
-              <p style={{ fontSize: '0.78rem', color: 'var(--text-main)', lineHeight: '1.5' }}>
+              <p style={{ fontSize: '0.78rem', color: 'var(--text-main)', lineHeight: '1.5', fontWeight: '500' }}>
                 Overlaying the satellite image onto the 3D terrain model might not be 100% perfect, so some visual features could appear slightly shifted.
               </p>
               <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: '1.48' }}>
                 I apologize for any minor inaccuracies and am always open to your suggestions and feedback for improvements!
               </p>
-              <div style={{ fontSize: '0.76rem', color: 'var(--accent-cyan)', fontWeight: '700', textAlign: 'right', marginTop: '4px', fontFamily: 'var(--font-mono)' }}>
+              <div style={{ fontSize: '0.76rem', color: darkMode ? 'var(--accent-cyan)' : '#0284c7', fontWeight: '700', textAlign: 'right', marginTop: '4px', fontFamily: 'var(--font-mono)' }}>
                 — Abhishek
               </div>
             </div>

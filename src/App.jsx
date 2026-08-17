@@ -288,6 +288,7 @@ export default function App() {
           setShowGrid={setShowGrid}
           epochIndex={epochIndex}
           setEpochIndex={setEpochIndex}
+          darkMode={darkMode}
         />
 
         {/* Hotspot Click Detail Popup Modal (Hidden on Mobile) */}
